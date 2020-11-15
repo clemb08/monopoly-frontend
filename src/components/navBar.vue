@@ -19,8 +19,8 @@
         <div class="px-3 py-2">
           <!-- NAV -->
           <ul class="main-nav navbar-nav">
-            <li>Home</li>
-            <li>Games</li>
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/games">Games</router-link></li>
           </ul>
           <!-- /NAV -->
         </div>

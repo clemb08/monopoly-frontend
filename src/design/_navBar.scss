@@ -15,12 +15,25 @@
     margin: 5px;
   }
 
-  .main-nav>li:hover, .main-nav>li>a:focus, .main-nav>li.active>a {
+  .main-nav>li>a {
+    text-decoration: none !important;
+    color: white;
+  }
+
+  .main-nav>li:hover, .main-nav>li.active>a {
     content: '';
     color: #D10024;
     border-top: solid 1px;
     -webkit-transition: 1s all;
     transition: 0.5s all;
+  }
+
+  .main-nav>li>a:focus{
+    color: #D10024;
+  }
+
+  .router-link-exact-active{
+    color: #D10024 !important;
   }
 
   .main-nav>li:after {
