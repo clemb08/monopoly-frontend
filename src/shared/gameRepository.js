@@ -31,7 +31,9 @@ const getGames = async () => {
       console.log('Nada');
     }
 
-    const games = data.map(game => game);
+    const games = data.map((game) => {
+      return game;
+    });
     console.log(games);
     return games;
   } catch (error) {
