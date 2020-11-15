@@ -10,6 +10,7 @@ import { gameRepository } from '../shared';
 export default {
   name: 'Games',
   async beforeMount() {
+    // eslint-disable-next-line no-console
     console.log('Hello');
     await this.loadGames();
   },

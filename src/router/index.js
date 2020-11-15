@@ -18,5 +18,11 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "bundle.games" */ '../views/Games.vue'),
     },
+    {
+      path: '/games/add',
+      name: 'Add_ùGames',
+      component: () =>
+        import(/* webpackChunkName: "bundle.games" */ '../views/CreateGame.vue'),
+    },
   ],
 });
