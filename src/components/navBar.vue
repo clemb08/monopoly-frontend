@@ -16,14 +16,14 @@
         sidebar-class="border-right border-danger"
         shadow
       >
-        <div class="px-3 py-2">
+
           <!-- NAV -->
-          <ul class="main-nav navbar-nav">
-            <li>Home</li>
-            <li>Games</li>
+          <ul class="main-nav">
+            <li class="col-10"><router-link to="/">Home</router-link></li>
+            <li class="col-10"><router-link to="/games">Games</router-link></li>
           </ul>
           <!-- /NAV -->
-        </div>
+
       </b-sidebar>
       <!-- /responsive-nav -->
     </div>
