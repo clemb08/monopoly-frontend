@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <NavBar />
-    <img src="./assets/logo.png">
+    <div class="text-center"><img class="img-fluid" src="./assets/monopoly.jpg"></div>
+
     <router-view/>
   </div>
 </template>
