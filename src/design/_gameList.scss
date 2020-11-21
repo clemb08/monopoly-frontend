@@ -1,5 +1,6 @@
 h2 {
-  margin-bottom: 30px !important;
+  display: flex;
+  align-items: center;
 }
 
 li {
@@ -10,7 +11,11 @@ li {
   padding: 10px;
 }
 
-.btn {
+.btn-add {
+  float: right;
+}
+
+.btn-game {
   margin: 5px;
 }
 
@@ -21,4 +26,9 @@ li {
 .date {
   display: flex;
   align-items: center;
+}
+
+.row {
+  width: 100%;
+  margin: 30px;
 }

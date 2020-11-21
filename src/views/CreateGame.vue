@@ -1,9 +1,14 @@
 /* eslint-disable no-console */
 <template>
   <div>
-      <label for="nameGame">Name</label>
-      <input type='text' id="nameGame" v-model="gameName"/>
-      <button type="submit" @click="newGame(gameName)">Save</button>
+      <b-input-group prepend="Name" class="col-6">
+        <b-form-input type='text' id="nameGame" v-model="gameName"></b-form-input>
+        <b-input-group-append>
+          <b-button variant="success" @click="newGame(gameName)">
+            Save
+          </b-button>
+        </b-input-group-append>
+      </b-input-group>
   </div>
 </template>
 
@@ -27,6 +32,7 @@ export default {
       // eslint-disable-next-line no-console
       console.log(gameName);
       gameRepository.addGame(gameName);
+      this.$router.push({ name: 'Games' });
     },
   },
 };

@@ -1,14 +1,24 @@
 <template>
   <div class="container">
-    <h2>Games</h2>
+    <div class="row">
+      <h2 class="col-10">Games</h2>
+      <b-button class="col-1 btn-add align-self-end" @click="goToAdd()">
+        <b-icon icon="plus-circle-fill"></b-icon>
+      </b-button>
+    </div>
+
     <ul>
       <li class="col-8" v-for="game in games" :key="game.id">
         <b-card bg-variant="dark" text-variant="light">
           <b-card-title>{{ game.name }}</b-card-title>
           <div class="row card-content">
             <div class="col-7 date">Créé le {{ game.createdAt }}</div>
-            <b-button class="col-2" variant="outline-success"><b-icon icon="play"></b-icon> Play</b-button>
-            <b-button class="col-2 align-self-end" variant="outline-danger"><b-icon icon="x-circle-fill"></b-icon> Delete</b-button>
+            <b-button class="col-2 btn-game" variant="outline-success">
+              <b-icon icon="play"></b-icon> Play
+            </b-button>
+            <b-button class="col-2 align-self-end btn-game" variant="outline-danger">
+              <b-icon icon="x-circle-fill"></b-icon> Delete
+              </b-button>
           </div>
         </b-card>
       </li>
@@ -35,6 +45,9 @@ export default {
     async loadGames() {
       this.games = [];
       this.games = await gameRepository.getGames();
+    },
+    goToAdd() {
+      this.$router.push({ name: 'Add_Games' });
     },
   },
 };
