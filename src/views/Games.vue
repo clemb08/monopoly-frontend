@@ -12,13 +12,18 @@
         <b-card bg-variant="dark" text-variant="light">
           <b-card-title>{{ game.name }}</b-card-title>
           <div class="row card-content">
-            <div class="col-7 date">Créé le {{ game.createdAt }}</div>
-            <b-button class="col-2 btn-game" variant="outline-success">
-              <b-icon icon="play"></b-icon> Play
-            </b-button>
-            <b-button class="col-2 align-self-end btn-game" variant="outline-danger">
-              <b-icon icon="x-circle-fill"></b-icon> Delete
+            <div class="col-8 date">Créé le {{ game.createdAt }}</div>
+            <router-link class="btn-game" :to="{ name: 'InGame', params: { id: game.id } }">
+              <b-button variant="outline-success">
+                <b-icon icon="play"></b-icon> Play
               </b-button>
+            </router-link>
+            <b-button
+              class="align-self-end btn-game"
+              variant="outline-danger"
+            >
+              <b-icon icon="x-circle-fill"></b-icon> Delete
+            </b-button>
           </div>
         </b-card>
       </li>
@@ -48,6 +53,9 @@ export default {
     },
     goToAdd() {
       this.$router.push({ name: 'Add_Games' });
+    },
+    goToGame(gameId) {
+      this.$router.push({ name: 'InGame', params: { gameId } });
     },
   },
 };

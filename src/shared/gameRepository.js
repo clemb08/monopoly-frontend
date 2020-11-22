@@ -12,7 +12,7 @@ const parseList = (response) => {
   return list;
 };
 
-export const parseItem = (response, code) => {
+const parseItem = (response, code) => {
   if (response.status !== code) throw Error(response.message);
   let item = response.data;
   if (typeof item !== 'object') {

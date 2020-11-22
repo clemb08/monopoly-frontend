@@ -7,9 +7,14 @@ li {
   list-style-type: none;
 }
 
+.card-body {
+  padding: 3px !important;
+}
+
 .card-content {
   padding: 10px;
 }
+
 
 .btn-add {
   float: right;
@@ -30,5 +35,5 @@ li {
 
 .row {
   width: 100%;
-  margin: 30px;
+  margin: 30px !important;
 }

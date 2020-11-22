@@ -12,15 +12,6 @@ const parseList = (response) => {
   return list;
 };
 
-export const parseItem = (response, code) => {
-  if (response.status !== code) throw Error(response.message);
-  let item = response.data;
-  if (typeof item !== 'object') {
-    item = undefined;
-  }
-  return item;
-};
-
 const getPlayers = async () => {
   try {
     const response = await axios.get('http://localhost:8080/api/player/all');
@@ -42,7 +33,7 @@ const getPlayers = async () => {
 
 const getPlayerByGameId = async (id) => {
   try {
-    const response = await axios.get(`/api/player/game/${id}`);
+    const response = await axios.get(`http://localhost:8080/api/player/game?id=${id}`);
 
     const data = parseList(response, 200);
     if (data == null) {
@@ -57,17 +48,18 @@ const getPlayerByGameId = async (id) => {
   }
 };
 
-const addPlayer = async (player) => {
+async function addPlayer(playerName, gameId) {
   try {
-    console.log(player);
-    const res = await axios.post(`http://localhost:8080/api/player/add?name=${player}`);
+    console.log(`${playerName} ${gameId}`);
+    const res = await axios.post(`http://localhost:8080/api/player/add?game=${gameId}`,
+      { name: playerName });
     console.log(res.data);
-    return player;
+    return playerName;
   } catch (error) {
     console.log(error);
     return null;
   }
-};
+}
 
 
 export const playerRepository = {
