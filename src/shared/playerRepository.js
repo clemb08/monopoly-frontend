@@ -21,9 +21,9 @@ export const parseItem = (response, code) => {
   return item;
 };
 
-const getGames = async () => {
+const getPlayers = async () => {
   try {
-    const response = await axios.get('http://localhost:8080/api/game/all');
+    const response = await axios.get('http://localhost:8080/api/player/all');
 
     const data = parseList(response);
 
@@ -31,34 +31,38 @@ const getGames = async () => {
       console.log('Nada');
     }
 
-    const games = data.map(game => game);
-    console.log(games);
-    return games;
+    const players = data.map(player => player);
+    console.log(players);
+    return players;
   } catch (error) {
     console.log(error);
     return [];
   }
 };
 
-const getGameById = async (id) => {
+const getPlayerByGameId = async (id) => {
   try {
-    const response = await axios.get(`/api/game/${id}`);
+    const response = await axios.get(`/api/player/game/${id}`);
 
-    const game = parseList(response, 200);
+    const data = parseList(response, 200);
+    if (data == null) {
+      console.log('Nada');
+    }
 
-    return game;
+    const players = data.map(player => player);
+    return players;
   } catch (error) {
     console.log(error);
     return null;
   }
 };
 
-const addGame = async (game) => {
+const addPlayer = async (player) => {
   try {
-    console.log(game);
-    const res = await axios.post(`http://localhost:8080/api/game/add?name=${game}`);
+    console.log(player);
+    const res = await axios.post(`http://localhost:8080/api/player/add?name=${player}`);
     console.log(res.data);
-    return game;
+    return player;
   } catch (error) {
     console.log(error);
     return null;
@@ -66,8 +70,8 @@ const addGame = async (game) => {
 };
 
 
-export const gameRepository = {
-  getGames,
-  getGameById,
-  addGame,
+export const playerRepository = {
+  getPlayers,
+  getPlayerByGameId,
+  addPlayer,
 };
