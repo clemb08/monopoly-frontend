@@ -8,22 +8,24 @@
     </div>
 
     <ul>
-      <li class="col-8" v-for="game in games" :key="game.id">
+      <li class="col-5 game" v-for="game in games" :key="game.id">
         <b-card bg-variant="dark" text-variant="light">
           <b-card-title>{{ game.name }}</b-card-title>
           <div class="row card-content">
-            <div class="col-8 date">Créé le {{ game.createdAt }}</div>
-            <router-link class="btn-game" :to="{ name: 'InGame', params: { id: game.id } }">
-              <b-button variant="outline-success">
-                <b-icon icon="play"></b-icon> Play
+            <div class="col-6 date">Créé le {{ game.createdAt }}</div>
+            <b-button-group class="group-btn-game">
+              <router-link
+                class="btn-game"
+                :to="{ name: 'InGame', params: { id: game.id } }"
+              >
+                <b-button variant="outline-success">
+                  <b-icon icon="play"></b-icon>
+                </b-button>
+              </router-link>
+              <b-button class="btn-game" variant="outline-danger">
+                <b-icon icon="x-circle-fill"></b-icon>
               </b-button>
-            </router-link>
-            <b-button
-              class="align-self-end btn-game"
-              variant="outline-danger"
-            >
-              <b-icon icon="x-circle-fill"></b-icon> Delete
-            </b-button>
+            </b-button-group>
           </div>
         </b-card>
       </li>
