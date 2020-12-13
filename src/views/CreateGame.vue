@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { gameRepository } from '../shared';
-
 export default {
   name: 'CreateGame',
   data() {
@@ -29,10 +27,9 @@ export default {
   },
   methods: {
     newGame(gameName) {
-      // eslint-disable-next-line no-console
-      console.log(gameName);
-      gameRepository.addGame(gameName);
-      this.$router.push({ name: 'Games' });
+      this.$store.dispatch('addGame', gameName)
+        .then(this.$router.push({ name: 'Games' }))
+        .catch(err => console.log(err));
     },
   },
 };

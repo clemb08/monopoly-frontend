@@ -8,17 +8,24 @@
     </div>
 
     <ul>
-      <li class="col-8" v-for="game in games" :key="game.id">
+      <li class="col-5 game" v-for="game in games" :key="game.id">
         <b-card bg-variant="dark" text-variant="light">
           <b-card-title>{{ game.name }}</b-card-title>
           <div class="row card-content">
-            <div class="col-7 date">Créé le {{ game.createdAt }}</div>
-            <b-button class="col-2 btn-game" variant="outline-success">
-              <b-icon icon="play"></b-icon> Play
-            </b-button>
-            <b-button class="col-2 align-self-end btn-game" variant="outline-danger">
-              <b-icon icon="x-circle-fill"></b-icon> Delete
+            <div class="col-6 date">Créé le {{ game.createdAt }}</div>
+            <b-button-group class="group-btn-game">
+              <router-link
+                class="btn-game"
+                :to="{ name: 'InGame', params: { id: game.id } }"
+              >
+                <b-button variant="outline-success">
+                  <b-icon icon="play"></b-icon>
+                </b-button>
+              </router-link>
+              <b-button class="btn-game" variant="outline-danger">
+                <b-icon icon="x-circle-fill"></b-icon>
               </b-button>
+            </b-button-group>
           </div>
         </b-card>
       </li>
@@ -27,27 +34,29 @@
 </template>
 
 <script>
-import { gameRepository } from '../shared';
 
 export default {
   name: 'Games',
   data() {
     return {
-      games: [],
     };
   },
-  async created() {
-    // eslint-disable-next-line no-console
-    await this.loadGames();
-    console.log(this.games);
+  created() {
+    this.$store.dispatch('fetchGames')
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  },
+  computed: {
+    games() {
+      return this.$store.state.games;
+    },
   },
   methods: {
-    async loadGames() {
-      this.games = [];
-      this.games = await gameRepository.getGames();
-    },
     goToAdd() {
       this.$router.push({ name: 'Add_Games' });
+    },
+    goToGame(gameId) {
+      this.$router.push({ name: 'InGame', params: { gameId } });
     },
   },
 };

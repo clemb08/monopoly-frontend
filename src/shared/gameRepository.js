@@ -12,7 +12,7 @@ const parseList = (response) => {
   return list;
 };
 
-export const parseItem = (response, code) => {
+const parseItem = (response, code) => {
   if (response.status !== code) throw Error(response.message);
   let item = response.data;
   if (typeof item !== 'object') {
@@ -31,9 +31,7 @@ const getGames = async () => {
       console.log('Nada');
     }
 
-    const games = data.map((game) => {
-      return game;
-    });
+    const games = data.map(game => game);
     console.log(games);
     return games;
   } catch (error) {
@@ -58,7 +56,7 @@ const getGameById = async (id) => {
 const addGame = async (game) => {
   try {
     console.log(game);
-    const res = await axios.post(`http://localhost:8080/api/game/add?name=${ game}`);
+    const res = await axios.post(`http://localhost:8080/api/game/add?name=${game}`);
     console.log(res.data);
     return game;
   } catch (error) {
