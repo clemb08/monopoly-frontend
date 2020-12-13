@@ -34,25 +34,24 @@
 </template>
 
 <script>
-import { gameRepository } from '../shared';
 
 export default {
   name: 'Games',
   data() {
     return {
-      games: [],
     };
   },
-  async created() {
-    // eslint-disable-next-line no-console
-    await this.loadGames();
-    console.log(this.games);
+  created() {
+    this.$store.dispatch('fetchGames')
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  },
+  computed: {
+    games() {
+      return this.$store.state.games;
+    },
   },
   methods: {
-    async loadGames() {
-      this.games = [];
-      this.games = await gameRepository.getGames();
-    },
     goToAdd() {
       this.$router.push({ name: 'Add_Games' });
     },
